@@ -23,7 +23,7 @@ points = {
     Play.SCISSORS: 3,
     Results.VICTORY: 6,
     Results.DEFEAT: 0,
-    Results.DRAW: 3
+    Results.DRAW: 3,
 }
 
 with open(FILE_NAME) as f:
@@ -55,17 +55,28 @@ for line in lines:
             raise ValueError("Unexpected token", player)
 
     match (enemy_play, player_play):
-        case (Play.ROCK, Play.SCISSORS) | (Play.SCISSORS, Play.PAPER) | (Play.PAPER, Play.ROCK):
+        case (Play.ROCK, Play.SCISSORS) | (Play.SCISSORS, Play.PAPER) | (
+            Play.PAPER,
+            Play.ROCK,
+        ):
             result = Results.DEFEAT
             enemy_result = Results.VICTORY
-        case (Play.ROCK, Play.ROCK) | (Play.SCISSORS, Play.SCISSORS) | (Play.PAPER, Play.PAPER):
+        case (Play.ROCK, Play.ROCK) | (Play.SCISSORS, Play.SCISSORS) | (
+            Play.PAPER,
+            Play.PAPER,
+        ):
             result = Results.DRAW
             enemy_result = Results.DRAW
         case _:
             result = Results.VICTORY
             enemy_result = Results.DEFEAT
 
-    rounds.append((points[player_play] + points[result], points[enemy_play]+points[enemy_result]))
+    rounds.append(
+        (
+            points[player_play] + points[result],
+            points[enemy_play] + points[enemy_result],
+        )
+    )
 
 print("Answers p1", sum([r[0] for r in rounds]))
 
@@ -119,7 +130,7 @@ for line in lines:
                     player_play = Play.ROCK
                 case _:
                     player_play = Play.PAPER
-                    
+
     rounds_m2.append(points[player_play] + points[result])
-    
+
 print("Answers p2", sum([r for r in rounds_m2]))

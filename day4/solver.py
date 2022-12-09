@@ -7,7 +7,7 @@ FILE_NAME = path.join(basedir, "input.txt")
 
 def str_range_to_list(val: str) -> List[int]:
     low, high = val.split("-")
-    return list(range(int(low), int(high)+1))
+    return list(range(int(low), int(high) + 1))
 
 
 def fully_contained(a: List[int], b: List[int]) -> bool:
@@ -44,4 +44,3 @@ for line in lines:
             nb_full_contained_pairs += 1
 
 print("Answers", nb_full_contained_pairs, nb_overlap)
-

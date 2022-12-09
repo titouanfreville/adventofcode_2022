@@ -9,9 +9,7 @@ with open(FILE_NAME) as f:
 
     lines = data.replace("\r", "").split("\n\n")
 
-elves_carries = [
-    sum([int(a) for a in line.split("\n") if a]) for line in lines
-]
+elves_carries = [sum([int(a) for a in line.split("\n") if a]) for line in lines]
 
 elves_carries.sort(reverse=True)
 

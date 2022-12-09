@@ -6,7 +6,9 @@ from typing import List, TypedDict
 basedir = path.dirname(__file__)
 FILE_NAME = path.join(basedir, "input.txt")
 
-extract_instruction_re = re.compile(r"move (?P<quantity>\d+) from (?P<start>\d{1}) to (?P<end>\d{1})")
+extract_instruction_re = re.compile(
+    r"move (?P<quantity>\d+) from (?P<start>\d{1}) to (?P<end>\d{1})"
+)
 pile_base = re.compile(r"([1-9]+[ ]+)+")
 
 
@@ -48,12 +50,12 @@ for line in lines:
 
         if not piles:
             for i in range(0, len(objectives)):
-                piles[str(i+1)] = []
+                piles[str(i + 1)] = []
 
         for i, val in enumerate(objectives):
             val = val.strip().strip("[").strip("]")
             if val:
-                piles[str(i+1)].append(val)
+                piles[str(i + 1)].append(val)
     else:
         moves.append(parse_instruction(line))
 
@@ -66,14 +68,14 @@ for move in moves:
     for _ in range(0, int(move["quantity"])):
         to_pile.insert(0, from_pile.pop(0))
 
-print("Answers 1", ''.join(p[0] for p in piles.values()))
+print("Answers 1", "".join(p[0] for p in piles.values()))
 
 # Part 2 ---------------------------
 for move in moves:
     from_pile = piles2[move["start"]]
     to_pile = piles2[move["end"]]
 
-    piles2[move["end"]] = from_pile[:int(move["quantity"])] + to_pile
-    piles2[move["start"]] = from_pile[int(move["quantity"]):]
-        
-print("Answers 2", ''.join(p[0] if p else " " for p in piles2.values()))
+    piles2[move["end"]] = from_pile[: int(move["quantity"])] + to_pile
+    piles2[move["start"]] = from_pile[int(move["quantity"]) :]
+
+print("Answers 2", "".join(p[0] if p else " " for p in piles2.values()))

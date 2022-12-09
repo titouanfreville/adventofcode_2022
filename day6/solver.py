@@ -1,7 +1,4 @@
-import re
-from copy import deepcopy
 from os import path
-from typing import List, TypedDict
 
 basedir = path.dirname(__file__)
 FILE_NAME = path.join(basedir, "input.txt")
